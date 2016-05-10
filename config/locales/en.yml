@@ -1,8 +1,15 @@
 en:
   spree:
     quotes: quotes
+    valid_quote_message: Quote successfully submitted
+    invalid_quote_message: Quote is invalid
   activerecord:
     models:
       spree/quote:
         one: quote
         other: quotes
+    attributes:
+      spree/quote:
+        created_at: Created At
+        state:  State
+        description: Quote
