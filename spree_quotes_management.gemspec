@@ -5,7 +5,7 @@ Gem::Specification.new do |s|
   s.version     = '3.0.7'
   s.summary     = 'Quotes Management'
   s.description = 'At user end
-                      -user can quote anything and submit
+                      -user can quote about the site.
                       -can view his quotes
                       -top 5 quotes are visible to every user
 
@@ -25,7 +25,6 @@ Gem::Specification.new do |s|
   s.requirements << 'none'
 
   s.add_dependency 'spree_core', '~> 3.0.7'
-  s.add_dependency 'draper', '~> 2.1.0'
   s.add_dependency 'state_machines-activerecord', '~> 0.3.0'
 
   s.add_development_dependency 'capybara', '~> 2.4'

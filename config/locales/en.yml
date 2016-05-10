@@ -1,6 +1,6 @@
 en:
   spree:
-    quotes: quotes
+    quotes: Quotes
     valid_quote_message: Quote successfully submitted
     invalid_quote_message: Quote is invalid
   activerecord:

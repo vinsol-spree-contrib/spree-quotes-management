@@ -12,7 +12,7 @@
     <% @quotes.each do |quote| %>
       <tr id="<%= spree_dom_id quote %>" data-hook="admin_quotes_index_rows" class="<%= cycle('odd', 'even')%>">
         <td class='quotes_description'><%= quote.description %></td>
-        <td class='quotes_start_date'><%= quote.formatted_created_at %></td>
+        <td class='quotes_start_date'><%= present(quote).created_at %></td>
         <td class='quotes_state'><%= quote.state %></td>
       </tr>
     <% end %>

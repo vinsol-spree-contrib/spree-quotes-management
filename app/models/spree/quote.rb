@@ -1,7 +1,6 @@
 module Spree
   class Quote < Spree::Base
 
-    delegate :formatted_created_at, to: :decorate
     validates :description, :user, :state, presence: true
 
     belongs_to :user
