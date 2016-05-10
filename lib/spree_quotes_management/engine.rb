@@ -4,6 +4,8 @@ module SpreeQuotesManagement
     isolate_namespace Spree
     engine_name 'spree_quotes_management'
 
+    config.autoload_paths += %W(#{config.root}/lib)
+
     # use rspec for tests
     config.generators do |g|
       g.test_framework :rspec

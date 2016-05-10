@@ -3,20 +3,29 @@ Gem::Specification.new do |s|
   s.platform    = Gem::Platform::RUBY
   s.name        = 'spree_quotes_management'
   s.version     = '3.0.7'
-  s.summary     = 'TODO: Add gem summary here'
-  s.description = 'TODO: Add (optional) gem description here'
+  s.summary     = 'Quotes Management'
+  s.description = 'At user end
+                      -user can quote about the site.
+                      -can view his quotes
+                      -top 5 quotes are visible to every user
+
+                    At admin end
+                      -admin can view all quotes
+                      -can either edit or publish a quote'
+
   s.required_ruby_version = '>= 2.0.0'
 
-  # s.author    = 'You'
-  # s.email     = 'you@example.com'
+  s.author    = 'Pratibha Mansinghka'
+  s.email     = 'pratibha@vinsol.com'
   # s.homepage  = 'http://www.spreecommerce.com'
-
+  s.files       = `git ls-files`.split("\n")
   #s.files       = `git ls-files`.split("\n")
   #s.test_files  = `git ls-files -- {test,spec,features}/*`.split("\n")
   s.require_path = 'lib'
   s.requirements << 'none'
 
   s.add_dependency 'spree_core', '~> 3.0.7'
+  s.add_dependency 'state_machines-activerecord', '~> 0.3.0'
 
   s.add_development_dependency 'capybara', '~> 2.4'
   s.add_development_dependency 'coffee-rails'
