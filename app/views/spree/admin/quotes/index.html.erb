@@ -1,0 +1,31 @@
+
+
+<% content_for :page_title do %>
+  <%= Spree.t(:quotes) %>
+<% end %>
+
+<div id="all_quotes">
+
+<table class="table" id="listing_quotes">
+  <thead>
+    <tr data-hook="quotes_index_headers">
+      <th><%= Spree::Quote.human_attribute_name(:description) %></th>
+      <th><%= Spree::Quote.human_attribute_name(:created_at) %></th>
+      <th><%= Spree::Quote.human_attribute_name(:state) %></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @quotes.each do |quote| %>
+      <tr id="<%= spree_dom_id quote %>" data-hook="admin_quotes_index_rows" class="<%= cycle('odd', 'even')%>">
+        <td class='quotes_description'><%= quote.description %></td>
+        <td class='quotes_start_date'><%= present(quote).created_at %></td>
+        <td class='quotes_state'><%= quote.state %></td>
+        <td>  <%= link_to_delete quote, :no_text => true %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+</div>
+
+
+
