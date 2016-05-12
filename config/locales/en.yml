@@ -12,5 +12,5 @@ en:
     attributes:
       spree/quote:
         created_at: Created At
-        state:  State
+        state:  Status
         description: Quote
