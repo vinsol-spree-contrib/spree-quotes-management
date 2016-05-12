@@ -1,0 +1,28 @@
+<div data-hook="admin_user_form_fields" class="row">
+  <div class="col-md-12">
+    <%= f.field_container :description, class: ['form-group'] do %>
+      <%= f.label :description, Spree::Quote.human_attribute_name(:description) %>
+      <%= f.text_field :description, :class => 'form-control' %>
+      <%= f.error_message_on :description %>
+    <% end %>
+  </div>
+  <div class="col-md-6">
+    <%= f.field_container :author_name, class: ['form-group'] do %>
+      <%= f.label :author_name, Spree::Quote.human_attribute_name(:author_name) %>
+      <%= f.text_field :author_name, :class => 'form-control' %>
+      <%= f.error_message_on :author_name %>
+    <% end %>
+
+  </div>
+  <div class="col-md-6">
+    <%= f.field_container :rank, class: ['form-group'] do %>
+      <%= f.label :rank, Spree::Quote.human_attribute_name(:rank) %>
+      <% if @quote.publish? %>
+        <%= f.text_field :rank, :class => 'form-control' %>
+      <% else %>
+        <%= f.text_field :rank, :class => 'form-control', disabled: true %>
+      <% end %>
+      <%= f.error_message_on :rank %>
+    <% end %>
+  </div>
+</div>
