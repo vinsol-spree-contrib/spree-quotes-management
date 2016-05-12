@@ -1,6 +1,7 @@
 module Spree
   class Quote < Spree::Base
 
+    ADMIN_QUOTES_PER_PAGE = 12
     validates :description, :user, :state, presence: true
 
     belongs_to :user
@@ -12,11 +13,11 @@ module Spree
       end
 
       state :publish do
-        validates_presence_of :rank
         transition to: :draft, on: :unpublish
       end
-
     end
+
+    self.whitelisted_ransackable_attributes = %w[description state]
 
   end
 end

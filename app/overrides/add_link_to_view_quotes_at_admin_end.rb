@@ -8,4 +8,3 @@ Deface::Override.new(
       </ul>
     }
 )
-
