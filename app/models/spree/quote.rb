@@ -1,36 +1,38 @@
 module Spree
   class Quote < Spree::Base
 
+    QUOTE_DESCRIPTION_MAX_LIMIT = 240
+
     validates :description, :user, :state, presence: true
 
     belongs_to :user
 
-    before_destroy :check_if_published
+    before_destroy :restrict_if_published
 
     state_machine initial: :draft do
 
-      before_transition on: :publish, do: :set_date_of_publish
+      before_transition to: :published, do: :set_published_at
 
       state :draft do
-        transition to: :publish, on: :publish
+        transition to: :published, on: :publish
       end
 
-      state :publish do
+      state :published do
         transition to: :draft, on: :unpublish
       end
     end
 
     private
 
-      def check_if_published
-        if publish?
+      def restrict_if_published
+        if published?
           errors.add(:Base, Spree.t(:destroy_published_quote))
           false
         end
       end
 
-      def set_date_of_publish
-        self.published_at = Time.now
+      def set_published_at
+        self.published_at = Time.current
       end
   end
 end

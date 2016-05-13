@@ -1,35 +1,38 @@
 // Placeholder manifest file.
 // the installer will append this file to the app vendored assets here: vendor/assets/javascripts/spree/frontend/all.js'
 
+// This js is for adding no. of characters left for input in textarea to a span#span-char-left
 
-function SpreeQuotesManagement(max_limit, span_char_left, quotes_textarea) {
-  this.max_limit = max_limit;
-  this.$span_char_left = $(span_char_left);
-  this.$quotes_textarea = $(quotes_textarea)
+// Add data field max-limit to textarea(optional) and a span with id span-char-left below textarea
+
+function SpreeQuotesManagement(divSelector) {
+  this.$div = $(divSelector);
+  this.maxLimit = this.$div.find('textarea').data('max-limit') || 240;
+  this.$spanCharLeft = this.$div.find('span#span-char-left');
 }
 
 SpreeQuotesManagement.prototype.init = function() {
   var _this = this;
-  _this.$span_char_left.css('display', 'none');
+  _this.$spanCharLeft.css('display', 'none');
 
-  _this.$quotes_textarea.keyup(function () {
-    var lengthCount = this.value.length;
-    if (lengthCount > _this.max_limit) {
-      this.value = this.value.substring(0, _this.max_limit);
-      var charactersLeft = _this.max_limit - lengthCount + 1;
+  this.$div.on('keyup','textarea',function () {
+    _this.$spanCharLeft = $('span#span-char-left');
+    var lengthCount = this.value.length,
+        charactersLeft;
+    if (lengthCount > _this.maxLimit) {
+      this.value = this.value.substring(0, _this.maxLimit);
+      charactersLeft = 0;
     }
     else {
-      var charactersLeft = _this.max_limit - lengthCount;
+      charactersLeft = _this.maxLimit - lengthCount;
     }
-    _this.$span_char_left.css('display', 'block');
-    _this.$span_char_left.text(charactersLeft + ' Characters left');
+    _this.$spanCharLeft.css('display', 'block');
+    _this.$spanCharLeft.text(charactersLeft + ' Characters left');
   });
 }
 
 
 $(function () {
-  var max_limit = 240;
-  var span_char_left = $('#spnCharLeft');
-  var quotes_textarea = $('#quote_description');
-  new SpreeQuotesManagement(max_limit, span_char_left, quotes_textarea).init()
+  var divSelector = '#user_quotes_new_form';
+  new SpreeQuotesManagement(divSelector).init()
 });
