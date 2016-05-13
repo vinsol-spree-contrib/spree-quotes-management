@@ -3,6 +3,8 @@ module Spree
 
     QUOTE_DESCRIPTION_MAX_LIMIT = 240
 
+    ADMIN_QUOTES_PER_PAGE = 12
+
     validates :description, :user, :state, presence: true
 
     belongs_to :user
@@ -21,6 +23,8 @@ module Spree
         transition to: :draft, on: :unpublish
       end
     end
+
+    self.whitelisted_ransackable_attributes = %w[description state]
 
     private
 
