@@ -2,7 +2,15 @@
 Placeholder manifest file.
 the installer will append this file to the app vendored assets here: 'vendor/assets/stylesheets/spree/frontend/all.css'
 */
+@import 'bootstrap-sprockets';
+@import 'bootstrap';
+
+@import './form';
 
 .table > tbody > tr > td.quotes_description {
   width: 500px;
+}
+
+#quote_description_field, #quote_author_name {
+  margin-bottom: 20px;
 }

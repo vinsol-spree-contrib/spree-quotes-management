@@ -1,8 +1,9 @@
 en:
   spree:
     quotes: Quotes
-    valid_quote_message: Quote successfully submitted
+    valid_quote_message: Thanks for your feedback, quote successfully received!
     invalid_quote_message: Quote is invalid
+    destroy_published_quote: "Published Quotes can't be destroyed"
   activerecord:
     models:
       spree/quote:
