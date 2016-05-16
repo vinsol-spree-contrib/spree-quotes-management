@@ -15,15 +15,14 @@ SpreeQuotesManagement.prototype.init = function() {
   var _this = this;
   _this.$spanCharLeft.css('display', 'none');
 
-  this.$div.on('keyup','textarea',function () {
+  this.$div.on('keyup', 'textarea', function() {
     _this.$spanCharLeft = $('span#span-char-left');
     var lengthCount = this.value.length,
         charactersLeft;
     if (lengthCount > _this.maxLimit) {
       this.value = this.value.substring(0, _this.maxLimit);
       charactersLeft = 0;
-    }
-    else {
+    } else {
       charactersLeft = _this.maxLimit - lengthCount;
     }
     _this.$spanCharLeft.css('display', 'block');
