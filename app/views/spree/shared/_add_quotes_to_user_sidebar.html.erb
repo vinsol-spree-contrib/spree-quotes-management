@@ -1,8 +1,5 @@
 <% if spree_current_user %>
-  <%= form_for 'Quote', url: quotes_path, remote: true, html: { id: 'add-quote' } do %>
-    <%= text_area :quote_params, :description, { rows: 4 } %><br />
-    <%= hidden_field :quote_params, :user_id, { value: current_spree_user.id } %><br />
-    <%= button 'Quote Us', 'ok', 'submit', { class: 'btn-success'} %>
-  <% end %>
+  <% @quote = Spree::Quote.new %>
+  <div id='user_quotes_new_form'><%= render partial: 'spree/quotes/form', locals: { quote: @quote } %></div>
   <%= link_to "View all", quotes_path %>
 <% end %>

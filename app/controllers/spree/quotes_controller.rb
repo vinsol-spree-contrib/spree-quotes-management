@@ -10,15 +10,14 @@ class Spree::QuotesController < Spree::StoreController
     @quote = ::Spree::Quote.new(quote_params)
     if @quote.save
       flash.now[:notice] = Spree.t(:valid_quote_message)
-    else
-      flash.now[:alert] = Spree.t(:invalid_quote_message)
+      @quote = ::Spree::Quote.new
     end
 
   end
 
     private
       def quote_params
-        params.require(:quote_params).permit(:description, :user_id)
+        params.require(:quote).permit(:description, :user_id, :author_name)
       end
 
 end

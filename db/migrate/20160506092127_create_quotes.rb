@@ -7,6 +7,7 @@ class CreateQuotes < ActiveRecord::Migration
       t.string :state
       t.belongs_to :user
       t.string :author_name
+      t.datetime :published_at
 
       t.timestamps null: false
     end
