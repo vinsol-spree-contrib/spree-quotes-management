@@ -3,20 +3,20 @@ module Spree
     class QuotesController < ResourceController
 
       def index
-        @quotes = ::Spree::Quote.order('rank desc, updated_at desc')
+        @quotes = ::Spree::Quote.order('rank desc, created_at desc')
         params[:q] ||= {}
         @search = @quotes.ransack(params[:q])
         @quotes = @search.result.
               includes(:user).
               page(params[:page]).
-              per(params[:per_page] || Spree::Quote::ADMIN_QUOTES_PER_PAGE)
+              per(params[:per_page] || SpreeQuotesManagement::QuotesConfig[:admin_quotes_per_page])
 
       end
 
       def publish
         @quote = Quote.find_by(id: params[:id])
         if @quote.publish
-          flash[:notice] = 'Quote successfully published'
+          flash[:notice] = Spree.t('flash.quotes.publish.success')
           redirect_to admin_quotes_path(q: params[:q])
         else
           render action: :edit
@@ -26,7 +26,7 @@ module Spree
       def unpublish
         @quote = Quote.find_by(id: params[:id])
         if @quote.unpublish
-          flash[:notice] = 'Quote successfully unpublished'
+          flash[:notice] = Spree.t('flash.quotes.unpublish.success')
           redirect_to admin_quotes_path(q: params[:q])
         else
           render action: :edit

@@ -11,6 +11,16 @@ module SpreeQuotesManagement
       g.test_framework :rspec
     end
 
+    initializer "spree_quotes_management.environment", before: :load_config_initializers, after: "spree.environment" do |app|
+      Dir.glob(File.join(File.dirname(__FILE__), "../../app/models/spree/app_configuration/*.rb")) do |c|
+        Rails.application.config.cache_classes ? require(c) : load(c)
+      end
+      app.config.spree.add_class('quote_preferences')
+      app.config.spree.quote_preferences = SpreeQuotesManagement::QuoteConfiguration.new
+
+      SpreeQuotesManagement::QuotesConfig = app.config.spree.quote_preferences
+    end
+
     def self.activate
       Dir.glob(File.join(File.dirname(__FILE__), '../../app/**/*_decorator*.rb')) do |c|
         Rails.configuration.cache_classes ? require(c) : load(c)

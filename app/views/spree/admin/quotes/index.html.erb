@@ -3,7 +3,7 @@
 <% end %>
 
 <% content_for :page_actions do %>
-  <%= button_link_to Spree.t(:new_quote), new_admin_quote_url, :class => "btn-success", :icon => 'add', :id => 'admin_new_quote' %>
+  <%= button_link_to Spree.t(:new_quote), new_admin_quote_url, class: "btn-success", icon: 'add', id: 'admin_new_quote' %>
 <% end if can? :create, Spree::Quote %>
 
 
@@ -11,21 +11,37 @@
   <div data-hook="admin_quotes_sidebar">
 
     <%= search_form_for [:admin, @search] do |f| %>
-      <%- locals = {:f => f} %>
+      <%- locals = {f: f} %>
       <div data-hook="admin_quotes_index_search" class="row">
         <div class="col-md-6">
           <div class="form-group">
-            <%= f.label :description_cont, Spree.t(:description_cont) %>
-            <%= f.text_field :description_cont, :size => 15, class: "form-control js-quick-search-target" %>
+            <%= f.label :description_cont, Spree.t(:description) %>
+            <%= f.text_field :description_cont, size: 15, class: "form-control js-quick-search-target" %>
           </div>
         </div>
 
         <div class="col-md-4">
           <div class="form-group">
             <%= label_tag :q_state_eq, Spree.t(:status) %>
-            <%= f.select :state_eq, Spree::Quote.state_machines[:state].states.map {|s| [Spree.t("quote_state.#{s.name}"), s.value]}, {:include_blank => true}, :class => 'select2 js-filterable' %>
+            <%= f.select :state_eq, Spree::Quote.state_machines[:state].states.map {|s| [Spree.t("quote_state.#{s.name}"), s.value]}, {include_blank: true}, class: 'select2 js-filterable' %>
           </div>
         </div>
+      </div>
+      <div data-hook="admin_quotes_index_search" class="row">
+        <div class="col-md-6">
+          <div class="form-group">
+            <%= f.label :author_name_cont, Spree.t(:author_name) %>
+            <%= f.text_field :author_name_cont, size: 15, class: "form-control js-quick-search-target" %>
+          </div>
+        </div>
+
+        <div class="col-md-6">
+          <div class="form-group">
+            <%= f.label :user_email_cont, Spree.t(:email) %>
+            <%= f.text_field :user_email_cont, size: 15, class: "form-control js-quick-search-target" %>
+          </div>
+        </div>
+
       </div>
       <div data-hook="admin_quotes_index_search_buttons" class="form-actions">
         <%= button Spree.t(:search), 'search' %>
@@ -41,26 +57,37 @@
   <thead>
     <tr data-hook="quotes_index_headers">
       <th><%= Spree::Quote.human_attribute_name(:description) %></th>
-      <th><%= Spree::Quote.human_attribute_name(:created_at) %></th>
+      <th><%= Spree::Quote.human_attribute_name(:user) %></th>
+      <th><%= Spree::Quote.human_attribute_name(:quoted_by) %></th>
+      <th><%= Spree::Quote.human_attribute_name(:quoted_at) %></th>
+      <th><%= Spree::Quote.human_attribute_name(:published_at) %></th>
       <th><%= Spree::Quote.human_attribute_name(:state) %></th>
-      <th><%= Spree::Quote.human_attribute_name(:author) %></th>
+      <th><%= Spree::Quote.human_attribute_name(:position) %></th>
     </tr>
   </thead>
   <tbody>
     <% @quotes.each do |quote| %>
       <tr id="<%= spree_dom_id quote %>" data-hook="admin_quotes_index_rows" class="<%= cycle('odd', 'even')%>">
         <td class='quotes_description'><%= quote.description %></td>
+        <td class='quotes_user'><%= quote.user.email %></td>
+        <td class='quotes_author'><%= quote.author_name.present? ? quote.author_name : 'Anonymous' %></td>
         <td class='quotes_start_date'><%= present(quote).created_at %></td>
+        <td class='quotes_publish_date'><%= quote.published? ? present(quote).published_at : '-' %></td>
         <td class='quotes_state'><%= quote.state %></td>
-        <td class='quotes_author'><%= quote.author_name.present? ? quote.author_name : quote.user.email %></td>
+        <td class='quotes_state'><%= quote.rank || '-' %></td>
         <td class="text-right">
-          <%= link_to_edit quote, :no_text => true %>
-          <% if quote.publish? %>
-            <%= link_to_with_icon('export', 'unpublish', unpublish_admin_quote_url(quote, q: params[:q]) , data: { action: 'unpublish' }, class: "btn btn-success btn-sm", :no_text => true ) %>
+          <%= link_to_edit quote, no_text: true %>
+          <% if quote.published? %>
+            <%= link_to_with_icon('download', 'unpublish', unpublish_admin_quote_url(quote, q: params[:q]), data: { action: 'unpublish' }, class: "btn btn-success btn-sm", no_text: true ) %>
           <% else %>
-            <%= link_to_with_icon('import', 'publish', publish_admin_quote_url(quote, q: params[:q]) , data: { action: 'publish' }, class: "btn btn-success btn-sm", :no_text => true ) %>
+            <%= link_to_with_icon('ok', 'publish', publish_admin_quote_url(quote, q: params[:q]), data: { action: 'publish' }, class: "btn btn-success btn-sm", no_text: true ) %>
           <% end %>
-          <%= link_to_delete quote, :no_text => true %></td>
+          <% if quote.published? %>
+            <%= link_to_with_icon('delete', '', '#', disabled: true, no_text: true, class: 'btn btn-danger btn-sm') %>
+          <% else %>
+            <%= link_to_delete quote, no_text: true %>
+          <% end %>
+        </td>
       </tr>
     <% end %>
   </tbody>
