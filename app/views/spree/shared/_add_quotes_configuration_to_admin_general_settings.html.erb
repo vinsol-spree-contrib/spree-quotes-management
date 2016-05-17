@@ -1,0 +1,15 @@
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h1 class="panel-title"><%= Spree.t(:quotes_settings)%></h1>
+  </div>
+
+  <div class="panel-body">
+    <div class="">
+      <%= Spree.t(:number_of_quotes) %>
+    </div>
+    <div data-hook="general_settings_quotes_count">
+      <%= text_field_tag :number_of_quotes_to_display, ::SpreeQuotesManagement::Config[:number_of_quotes_to_display], class: 'form-control' %>
+      <%#= button Spree.t(:clear_cache), 'ok', 'button', id: "clear_cache" %>
+    </div>
+  </div>
+</div>

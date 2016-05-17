@@ -17,8 +17,7 @@ module SpreeQuotesManagement
       end
       app.config.spree.add_class('quote_preferences')
       app.config.spree.quote_preferences = SpreeQuotesManagement::QuoteConfiguration.new
-
-      SpreeQuotesManagement::QuotesConfig = app.config.spree.quote_preferences
+      SpreeQuotesManagement::Config = app.config.spree.quote_preferences
     end
 
     def self.activate

@@ -9,7 +9,7 @@ module Spree
         @quotes = @search.result.
               includes(:user).
               page(params[:page]).
-              per(params[:per_page] || SpreeQuotesManagement::QuotesConfig[:admin_quotes_per_page])
+              per(params[:per_page] || SpreeQuotesManagement::Config[:admin_quotes_per_page])
 
       end
 

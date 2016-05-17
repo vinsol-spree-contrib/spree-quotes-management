@@ -5,7 +5,7 @@ module Spree
 
     validates :description, :user, :state, presence: true
 
-    validates_numericality_of :rank, less_than_or_equal_to: SpreeQuotesManagement::QuotesConfig[:number_of_quotes_to_display], greater_than: 0, allow_blank: true
+    validates_numericality_of :rank, less_than_or_equal_to: SpreeQuotesManagement::Config[:number_of_quotes_to_display], greater_than: 0, allow_blank: true
 
     belongs_to :user
 

@@ -2,7 +2,7 @@
   <div class="col-md-12">
     <%= f.field_container :description, class: ['form-group'] do %>
       <%= f.label :description, Spree::Quote.human_attribute_name(:description) %>
-      <% description_max_limit = ::SpreeQuotesManagement::QuotesConfig[:max_char_in_quotes] %>
+      <% description_max_limit = ::SpreeQuotesManagement::Config[:max_char_in_quotes] %>
       <%= f.text_area :description, { rows: 4, maxlength: description_max_limit, data: { 'max-limit': description_max_limit }, class: 'form-control', id: 'quote_description'} %>
       <span id='span-char-left' class='pull-right'></span>
       <%= f.error_message_on :description %>
@@ -20,7 +20,7 @@
     <div class="col-md-6">
       <%= f.field_container :rank, class: ['form-group'] do %>
         <%= f.label :rank, Spree::Quote.human_attribute_name(:rank) %>
-        <%= f.select :rank, 1..SpreeQuotesManagement::QuotesConfig[:number_of_quotes_to_display], { include_blank: true }, class: 'form-control', disabled: !@quote.published? %>
+        <%= f.select :rank, 1..SpreeQuotesManagement::Config[:number_of_quotes_to_display], { include_blank: true }, class: 'form-control', disabled: !@quote.published? %>
         <%= f.error_message_on :rank %>
       <% end %>
     </div>
