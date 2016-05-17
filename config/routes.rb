@@ -9,5 +9,5 @@ Spree::Core::Engine.routes.draw do
     end
   end
 
-  resources :quotes, except: [:show, :destroy, :edit, :update]
+  resources :quotes, only: [:new, :create]
 end

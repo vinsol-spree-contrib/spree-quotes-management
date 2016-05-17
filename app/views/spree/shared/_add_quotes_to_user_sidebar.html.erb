@@ -1,5 +1,4 @@
 <% if spree_current_user %>
   <% @quote = Spree::Quote.new %>
   <div id='user_quotes_new_form'><%= render partial: 'spree/quotes/form', locals: { quote: @quote } %></div>
-  <%= link_to "View all", quotes_path %>
 <% end %>

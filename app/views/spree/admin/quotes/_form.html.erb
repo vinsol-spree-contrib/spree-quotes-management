@@ -16,11 +16,11 @@
     <% end %>
 
   </div>
-  <% if params[:action] == 'edit' || 'update' %>
+  <% if params[:action] == 'edit' || params[:action] == 'update' %>
     <div class="col-md-6">
       <%= f.field_container :rank, class: ['form-group'] do %>
         <%= f.label :rank, Spree::Quote.human_attribute_name(:rank) %>
-        <%= f.select :rank, 1..SpreeQuotesManagement::Config[:number_of_quotes_to_display], { include_blank: true }, class: 'form-control', disabled: !@quote.published? %>
+        <%= f.select :rank, 1..SpreeQuotesManagement::Config[:quotes_count], { include_blank: true }, class: 'form-control', disabled: !@quote.published? %>
         <%= f.error_message_on :rank %>
       <% end %>
     </div>

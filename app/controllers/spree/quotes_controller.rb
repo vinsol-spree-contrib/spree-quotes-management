@@ -2,10 +2,6 @@ class Spree::QuotesController < Spree::StoreController
 
   protect_from_forgery with: :null_session
 
-  def index
-    @quotes = ::Spree::Quote.where(user: current_spree_user) if current_spree_user
-  end
-
   def create
     @quote = ::Spree::Quote.new(quote_params)
     if @quote.save

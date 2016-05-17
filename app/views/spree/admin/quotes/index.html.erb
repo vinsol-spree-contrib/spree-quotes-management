@@ -12,7 +12,7 @@
 
     <%= search_form_for [:admin, @search] do |f| %>
       <%- locals = {f: f} %>
-      <div data-hook="admin_quotes_index_search" class="row">
+      <div class="row">
         <div class="col-md-6">
           <div class="form-group">
             <%= f.label :description_cont, Spree.t(:description) %>
