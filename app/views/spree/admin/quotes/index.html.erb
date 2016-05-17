@@ -71,9 +71,9 @@
         <td class='quotes_description'><%= quote.description %></td>
         <td class='quotes_user'><%= quote.user.email %></td>
         <td class='quotes_author'><%= quote.author_name.present? ? quote.author_name : 'Anonymous' %></td>
-        <td class='quotes_start_date'><%= present(quote).created_at %></td>
-        <td class='quotes_publish_date'><%= quote.published? ? present(quote).published_at : '-' %></td>
-        <td class='quotes_state'><%= quote.state %></td>
+        <td class='quotes_start_date'><%= pretty_time(quote.created_at) %></td>
+        <td class='quotes_publish_date'><%= quote.published? ? pretty_time(quote.published_at) : '-' %></td>
+        <td class='quotes_state'><%= quote.state.upcase %></td>
         <td class='quotes_state'><%= quote.rank || '-' %></td>
         <td class="text-right">
           <%= link_to_edit quote, no_text: true %>
