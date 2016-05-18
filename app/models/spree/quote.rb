@@ -15,7 +15,7 @@ module Spree
     state_machine initial: :draft do
 
       before_transition to: :published, do: :set_published_at
-      before_transition to: :draft, do: :set_rank
+      before_transition to: :draft, do: :reset_rank
 
       state :draft do
         transition to: :published, on: :publish
@@ -41,7 +41,7 @@ module Spree
         self.published_at = Time.current
       end
 
-      def set_rank
+      def reset_rank
         self.rank = nil
       end
 

@@ -3,16 +3,16 @@
 // Add data field max-limit to textarea(optional) and a span with id span-char-left below textarea
 
 function CharactersLeftCounter(divSelector) {
-  this.$div = $(divSelector);
-  this.maxLimit = this.$div.find('textarea').data('max-limit') || 240;
-  this.$spanCharLeft = this.$div.find('span#span-char-left');
+  this.$containerDiv = $(divSelector);
+  this.maxLimit = this.$containerDiv.find('textarea').data('max-limit') || 240;
+  this.$spanCharLeft = this.$containerDiv.find('span#span-char-left');
 }
 
 CharactersLeftCounter.prototype.init = function() {
   var _this = this;
   _this.$spanCharLeft.css('display', 'none');
 
-  this.$div.on('keyup', 'textarea', function() {
+  this.$containerDiv.on('keyup', 'textarea', function() {
     _this.$spanCharLeft = $('span#span-char-left');
     var lengthCount = this.value.length,
         charactersLeft;

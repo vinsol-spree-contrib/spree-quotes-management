@@ -23,7 +23,7 @@
         <div class="col-md-4">
           <div class="form-group">
             <%= label_tag :q_state_eq, Spree.t(:status) %>
-            <%= f.select :state_eq, Spree::Quote.state_machines[:state].states.map {|s| [Spree.t("quote_state.#{s.name}"), s.value]}, {include_blank: true}, class: 'select2 js-filterable' %>
+            <%= f.select :state_eq, quote_states, {include_blank: true}, class: 'select2 js-filterable' %>
           </div>
         </div>
       </div>
@@ -70,11 +70,11 @@
       <tr id="<%= spree_dom_id quote %>" data-hook="admin_quotes_index_rows" class="<%= cycle('odd', 'even')%>">
         <td class='quotes_description'><%= quote.description %></td>
         <td class='quotes_user'><%= quote.user.email %></td>
-        <td class='quotes_author'><%= quote.author_name.present? ? quote.author_name : 'Anonymous' %></td>
+        <td class='quotes_author'><%= present(quote).author_name %></td>
         <td class='quotes_start_date'><%= pretty_time(quote.created_at) %></td>
-        <td class='quotes_publish_date'><%= quote.published? ? pretty_time(quote.published_at) : '-' %></td>
+        <td class='quotes_publish_date'><%= present(quote).published_at %></td>
         <td class='quotes_state'><%= quote.state.upcase %></td>
-        <td class='quotes_state'><%= quote.rank || '-' %></td>
+        <td class='quotes_rank'><%= present(quote).rank %></td>
         <td class="text-right">
           <%= link_to_edit quote, no_text: true %>
           <% if quote.published? %>

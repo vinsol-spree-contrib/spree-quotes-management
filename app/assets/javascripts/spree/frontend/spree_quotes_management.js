@@ -4,6 +4,5 @@
 //= require spree/characters_left_counter
 
 $(function() {
-  var divSelector = '#user_quotes_new_form';
-  new CharactersLeftCounter(divSelector).init();
+  new CharactersLeftCounter('#user_quotes_new_form').init();
 });

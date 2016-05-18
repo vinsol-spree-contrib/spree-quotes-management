@@ -4,9 +4,8 @@ Spree::Admin::GeneralSettingsController.class_eval do
   private
 
   def update_quotes_settings
-    params.each do |name, value|
-      next unless SpreeQuotesManagement::Config.has_preference? name
-      SpreeQuotesManagement::Config[name] = value
+    SpreeQuotesManagement::Config.defined_preferences.each do |preference|
+      SpreeQuotesManagement::Config[preference] = params[preference] if params[preference]
     end
   end
 end

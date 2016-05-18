@@ -3,7 +3,7 @@ module Spree
     class QuotesController < ResourceController
 
       def index
-        @quotes = ::Spree::Quote.order('rank IS NULL, rank, created_at desc')
+        @quotes = ::Spree::Quote.order(::Spree::Quote.arel_table[:rank].eq(nil), :rank, created_at: :desc)
         params[:q] ||= {}
         @search = @quotes.ransack(params[:q])
         @quotes = @search.result.
