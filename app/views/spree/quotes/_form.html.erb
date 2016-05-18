@@ -20,3 +20,5 @@
     <%= button 'Submit Quote', 'ok', 'submit', { class: 'btn-success'} %>
     <%= f.hidden_field :user_id, { value: current_spree_user.id } %>
   <% end %>
+<%= javascript_include_tag 'spree/frontend/quotes/_form' %>
+<%= stylesheet_link_tag 'spree/frontend/quotes/new' %>
