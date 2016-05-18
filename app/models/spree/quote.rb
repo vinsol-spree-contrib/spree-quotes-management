@@ -1,11 +1,17 @@
 module Spree
   class Quote < Spree::Base
 
+    attr_accessor :index
+
+    scope :published, ->{ where(state: 'published') }
+    scope :with_rank, ->{ published.where(rank: 1..::SpreeQuotesManagement::Config[:quotes_count]) }
+    scope :published_and_without_rank, ->{ published.where(arel_table[:rank].not_in(1..::SpreeQuotesManagement::Config[:quotes_count]).or(arel_table[:rank].eq(nil))) }
+
     delegate :email, to: :user, prefix: true
 
     validates :description, :user, :state, presence: true
 
-    validates_numericality_of :rank, less_than_or_equal_to: SpreeQuotesManagement::Config[:quotes_count], greater_than: 0, allow_blank: true
+    validates_numericality_of :rank, less_than_or_equal_to: :top_quotes_count, greater_than: 0, allow_blank: true
 
     belongs_to :user
 
@@ -29,6 +35,10 @@ module Spree
     self.whitelisted_ransackable_attributes = %w[description state author_name]
 
     private
+
+      def top_quotes_count
+        SpreeQuotesManagement::Config[:quotes_count]
+      end
 
       def restrict_if_published
         if published?
