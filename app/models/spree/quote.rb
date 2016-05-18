@@ -4,8 +4,8 @@ module Spree
     attr_accessor :index
 
     scope :published, ->{ where(state: 'published') }
-    scope :with_rank, ->{ published.where(rank: 1..::SpreeQuotesManagement::Config[:quotes_count]) }
-    scope :published_and_without_rank, ->{ published.where(arel_table[:rank].not_in(1..::SpreeQuotesManagement::Config[:quotes_count]).or(arel_table[:rank].eq(nil))) }
+    scope :with_rank, ->{ published.where(rank: rank_range) }
+    scope :published_and_without_rank, ->{ published.where(arel_table[:rank].not_in(rank_range).or(arel_table[:rank].eq(nil))) }
 
     delegate :email, to: :user, prefix: true
 
@@ -33,6 +33,10 @@ module Spree
     end
     self.whitelisted_ransackable_associations = %w[user]
     self.whitelisted_ransackable_attributes = %w[description state author_name]
+
+    def self.rank_range
+      1..::SpreeQuotesManagement::Config[:quotes_count]
+    end
 
     private
 

@@ -17,7 +17,7 @@ module Spree
         @quote = Quote.find_by(id: params[:id])
         if @quote.publish
           flash[:notice] = Spree.t('flash.quotes.publish.success')
-          redirect_to admin_quotes_path(q: params[:q])
+          redirect_to admin_quotes_path(q: params[:q], page: params[:page], per_page: params[:per_page])
         else
           render action: :edit
         end
@@ -27,7 +27,7 @@ module Spree
         @quote = Quote.find_by(id: params[:id])
         if @quote.unpublish
           flash[:notice] = Spree.t('flash.quotes.unpublish.success')
-          redirect_to admin_quotes_path(q: params[:q])
+          redirect_to admin_quotes_path(q: params[:q], page: params[:page], per_page: params[:per_page])
         else
           render action: :edit
         end
