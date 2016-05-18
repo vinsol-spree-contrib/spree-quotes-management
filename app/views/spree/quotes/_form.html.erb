@@ -3,7 +3,7 @@
     <div data-hook="user_quotes_form_fields" class="row">
       <div class="col-md-12">
         <%= f.field_container :description, class: ['form-group'] do %>
-          <% description_max_limit = ::Spree::Quote::QUOTE_DESCRIPTION_MAX_LIMIT %>
+          <% description_max_limit = ::SpreeQuotesManagement::Config[:max_char_in_quotes] %>
           <%= f.text_area :description, { rows: 4, maxlength: description_max_limit, data: { 'max-limit': description_max_limit }, class: 'form-control', id: 'quote_description'} %>
           <span id='span-char-left' class='pull-right'></span>
           <%= f.error_message_on :description %>

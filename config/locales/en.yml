@@ -4,6 +4,12 @@ en:
     valid_quote_message: Thanks for your feedback, quote successfully received!
     invalid_quote_message: Quote is invalid
     destroy_published_quote: "Published Quotes can't be destroyed"
+    flash:
+      quotes:
+        publish:
+          success: Quote successfully published
+        unpublish:
+          success: Quote successfully unpublished
   activerecord:
     models:
       spree/quote:
@@ -12,5 +18,6 @@ en:
     attributes:
       spree/quote:
         created_at: Created At
-        state:  State
+        state:  Status
         description: Quote
+        author_name: Quoted By

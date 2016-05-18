@@ -6,7 +6,6 @@ Gem::Specification.new do |s|
   s.summary     = 'Quotes Management'
   s.description = 'At user end
                       -user can quote about the site.
-                      -can view his quotes
                       -top 5 quotes are visible to every user
 
                     At admin end

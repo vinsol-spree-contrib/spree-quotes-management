@@ -1,0 +1,27 @@
+<% content_for :page_title do %>
+  <%= link_to Spree.t(:quotes), spree.admin_quotes_url %> /
+  <%= Spree.t(:edit_quote) %>
+<% end %>
+
+<div data-hook="admin_quote_new_form_header">
+  <%= render partial: 'spree/admin/shared/error_messages', locals: { target: @quote } %>
+</div>
+
+<div data-hook="admin_quote_new_form">
+  <%= form_for [:admin, @quote], url: spree.admin_quote_url(@quote), method: :patch do |f| %>
+    <%= render partial: 'form', locals: { f: f } %>
+
+    <%= f.field_container :user_email, class: ['form-group'] do %>
+      <%= label :email, Spree::Quote.human_attribute_name(:email) %>
+      <%= text_field_tag :user_email, @quote.user.email, { class: 'form-control', readonly: true } %>
+    <% end %>
+
+    <div data-hook="admin_quote_new_form_buttons">
+      <div class="form-actions" data-hook="buttons">
+        <%= button Spree.t('actions.update'), 'refresh', 'submit', {class: 'btn-success'} %>
+        <span class="or"><%= Spree.t(:or) %></span>
+        <%= button_link_to Spree.t('actions.cancel'), spree.admin_quotes_url, icon: 'delete' %>
+      </div>
+    </div>
+  <% end %>
+</div>

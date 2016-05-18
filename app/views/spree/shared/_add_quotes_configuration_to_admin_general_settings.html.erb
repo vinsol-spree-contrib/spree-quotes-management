@@ -1,0 +1,21 @@
+<div class="panel panel-default">
+  <div class="panel-heading">
+    <h1 class="panel-title"><%= Spree.t(:quotes_settings)%></h1>
+  </div>
+
+  <div class="panel-body">
+    <div class="quotes-settings">
+      <div class="col-md-9">
+        <%= Spree.t(:number_of_quotes) %>
+      </div>
+    </div>
+    <div data-hook="general_settings_quotes_count">
+      <div class="col-md-9">
+        <%= text_field_tag :quotes_count, ::SpreeQuotesManagement::Config[:quotes_count], class: 'form-control' %>
+      </div>
+      <div class="col-md-3">
+        <%= select_tag :disable_quote?, options_for_select([['disable', true], ['enable', false]], ::SpreeQuotesManagement::Config[:disable_quote?]), class: 'form-control' %>
+      </div>
+    </div>
+  </div>
+</div>

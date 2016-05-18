@@ -1,0 +1,28 @@
+<div data-hook="admin_user_form_fields" class="row">
+  <div class="col-md-12">
+    <%= f.field_container :description, class: ['form-group'] do %>
+      <%= f.label :description, Spree::Quote.human_attribute_name(:description) %>
+      <% description_max_limit = ::SpreeQuotesManagement::Config[:max_char_in_quotes] %>
+      <%= f.text_area :description, { rows: 4, maxlength: description_max_limit, data: { 'max-limit': description_max_limit }, class: 'form-control', id: 'quote_description'} %>
+      <span id='span-char-left' class='pull-right'></span>
+      <%= f.error_message_on :description %>
+    <% end %>
+  </div>
+  <div class="col-md-6">
+    <%= f.field_container :author_name, class: ['form-group'] do %>
+      <%= f.label :author_name, Spree::Quote.human_attribute_name(:author_name) %>
+      <%= f.text_field :author_name, class: 'form-control' %>
+      <%= f.error_message_on :author_name %>
+    <% end %>
+
+  </div>
+  <% if params[:action] == 'edit' || params[:action] == 'update' %>
+    <div class="col-md-6">
+      <%= f.field_container :rank, class: ['form-group'] do %>
+        <%= f.label :rank, Spree::Quote.human_attribute_name(:rank) %>
+        <%= f.select :rank, 1..SpreeQuotesManagement::Config[:quotes_count], { include_blank: true }, class: 'form-control', disabled: !@quote.published? %>
+        <%= f.error_message_on :rank %>
+      <% end %>
+    </div>
+  <% end %>
+</div>
