@@ -1,8 +1,6 @@
 module Spree
   class Quote < Spree::Base
 
-    attr_accessor :index
-
     scope :published, ->{ where(state: 'published') }
     scope :with_rank, ->{ published.where(rank: rank_range) }
     scope :published_and_without_rank, ->{ published.where(arel_table[:rank].not_in(rank_range).or(arel_table[:rank].eq(nil))) }
@@ -35,13 +33,17 @@ module Spree
     self.whitelisted_ransackable_attributes = %w[description state author_name]
 
     def self.rank_range
-      1..::SpreeQuotesManagement::Config[:quotes_count]
+      1..top_quotes_count
+    end
+
+    def self.top_quotes_count
+      ::SpreeQuotesManagement::Config[:quotes_count]
     end
 
     private
 
       def top_quotes_count
-        SpreeQuotesManagement::Config[:quotes_count]
+        self.class.top_quotes_count
       end
 
       def restrict_if_published
