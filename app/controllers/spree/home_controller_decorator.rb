@@ -5,19 +5,7 @@ Spree::Admin::HomeController.class_eval do
 
 
   def set_top_quotes
-
-    # get quotes with rank
-    top_quotes = Spree::Quote.with_rank.order(rank: :desc).to_a
-
-    # get random quotes
-    random_quotes_count = Spree::Quote.top_quotes_count - top_quotes.count
-    random_quotes = Spree::Quote.published_and_without_rank.sample(random_quotes_count)
-
-    #arrange quotes
-    @top_quotes = Spree::Quote.rank_range.to_a.map do |rank|
-      top_quotes.last.try(:rank) == rank ? top_quotes.pop : random_quotes.pop
-    end.compact
-
+    @top_quotes = Spree::Quote.top_quotes
   end
 
   def set_new_quote
