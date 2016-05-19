@@ -17,6 +17,9 @@ en:
           success: Quote successfully unpublished
         state_change:
           failure: Quote not found
+    quote_state:
+      draft: draft
+      published: published
   activerecord:
     models:
       spree/quote:
