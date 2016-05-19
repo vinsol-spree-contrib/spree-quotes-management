@@ -78,9 +78,9 @@
         <td class="text-right">
           <%= link_to_edit quote, no_text: true %>
           <% if quote.published? %>
-            <%= link_to_with_icon('download', 'unpublish', unpublish_admin_quote_url(quote, q: params[:q]), data: { action: 'unpublish' }, class: "btn btn-success btn-sm", no_text: true ) %>
+            <%= link_to_with_icon('download', 'unpublish', unpublish_admin_quote_url(quote, q: params[:q], page: params[:page], per_page: params[:per_page]), data: { action: 'unpublish' }, class: "btn btn-success btn-sm", no_text: true ) %>
           <% else %>
-            <%= link_to_with_icon('ok', 'publish', publish_admin_quote_url(quote, q: params[:q]), data: { action: 'publish' }, class: "btn btn-success btn-sm", no_text: true ) %>
+            <%= link_to_with_icon('ok', 'publish', publish_admin_quote_url(quote, q: params[:q], page: params[:page], per_page: params[:per_page]), data: { action: 'publish' }, class: "btn btn-success btn-sm", no_text: true ) %>
           <% end %>
           <% if quote.published? %>
             <%= link_to_with_icon('delete', '', '#', disabled: true, no_text: true, class: 'btn btn-danger btn-sm') %>
@@ -95,3 +95,4 @@
 </div>
 
 <%= paginate @quotes %>
+<%= stylesheet_link_tag 'spree/backend/quotes/index' %>

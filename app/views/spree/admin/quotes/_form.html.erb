@@ -20,9 +20,10 @@
     <div class="col-md-6">
       <%= f.field_container :rank, class: ['form-group'] do %>
         <%= f.label :rank, Spree::Quote.human_attribute_name(:rank) %>
-        <%= f.select :rank, 1..SpreeQuotesManagement::Config[:quotes_count], { include_blank: true }, class: 'form-control', disabled: !@quote.published? %>
+        <%= f.select :rank, Spree::Quote.rank_range, { include_blank: true }, class: 'form-control', disabled: !@quote.published? %>
         <%= f.error_message_on :rank %>
       <% end %>
     </div>
   <% end %>
 </div>
+<%= javascript_include_tag 'spree/backend/quotes/_form.js' %>

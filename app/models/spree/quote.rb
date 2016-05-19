@@ -1,11 +1,15 @@
 module Spree
   class Quote < Spree::Base
 
+    scope :published, ->{ where(state: 'published') }
+    scope :ranked_quotes, ->{ published.where(rank: rank_range) }
+    scope :published_and_without_rank, ->{ published.where(arel_table[:rank].not_in(rank_range).or(arel_table[:rank].eq(nil))) }
+
     delegate :email, to: :user, prefix: true
 
     validates :description, :user, :state, presence: true
 
-    validates_numericality_of :rank, less_than_or_equal_to: SpreeQuotesManagement::Config[:quotes_count], greater_than: 0, allow_blank: true
+    validates_numericality_of :rank, less_than_or_equal_to: :quotes_display_count, greater_than: 0, allow_blank: true
 
     belongs_to :user
 
@@ -28,7 +32,35 @@ module Spree
     self.whitelisted_ransackable_associations = %w[user]
     self.whitelisted_ransackable_attributes = %w[description state author_name]
 
+    def self.rank_range
+      1..quotes_display_count
+    end
+
+    def self.quotes_display_count
+      ::SpreeQuotesManagement::Config[:quotes_count]
+    end
+
+    def self.top_quotes
+      # get quotes with rank
+      top_quotes = ranked_quotes.order(rank: :desc).to_a
+
+      # get random quotes
+      random_quotes_count = quotes_display_count - top_quotes.count
+      random_quotes = published_and_without_rank.sample(random_quotes_count)
+
+      #arrange quotes
+      top_quotes = rank_range.to_a.reduce([]) do |quotes, rank|
+        quote = top_quotes.last.try(:rank) == rank ? top_quotes.pop : random_quotes.pop
+        quote ? quotes << quote : quotes
+      end
+    end
+
+
     private
+
+      def quotes_display_count
+        self.class.quotes_display_count
+      end
 
       def restrict_if_published
         if published?
