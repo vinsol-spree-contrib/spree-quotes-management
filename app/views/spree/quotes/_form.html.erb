@@ -1,10 +1,12 @@
-  How was your experience with us?
+  <h2 class="textarea-head">
+    How was your experience with us?
+  </h2>
   <%= form_for quote, url: quotes_path, remote: true, html: { id: 'add-quote' } do |f| %>
     <div data-hook="user_quotes_form_fields" class="row">
       <div class="col-md-12">
         <%= f.field_container :description, class: ['form-group'] do %>
           <% description_max_limit = ::SpreeQuotesManagement::Config[:max_char_in_quotes] %>
-          <%= f.text_area :description, { rows: 4, maxlength: description_max_limit, data: { 'max-limit': description_max_limit }, class: 'form-control', id: 'quote_description'} %>
+          <%= f.text_area :description, { rows: 4, maxlength: description_max_limit, data: { 'max-limit': description_max_limit }, class: 'form-control quotes-area', id: 'quote_description'} %>
           <span id='span-char-left' class='pull-right'></span>
           <%= f.error_message_on :description %>
         <% end %>
@@ -12,12 +14,12 @@
     </div>
     <div data-hook="user_quotes_form_fields" class="row">
     <div class="col-md-12">
-      <%= f.field_container :author_name, class: ['form-group'] do %>
-        - <%= f.text_field :author_name, { placeholder: 'Quoted By' } %>
+      <%= f.field_container :author_name, class: ['form-group form-group-btn'] do %>
+        - <%= f.text_field :author_name, { placeholder: 'Quoted By', class:'autor-name-field' } %>
           <%= f.error_message_on :author_name %>
       <% end %>
     </div></div>
-    <%= button 'Submit Quote', 'ok', 'submit', { class: 'btn-success'} %>
+    <%= button 'Submit Quote', 'ok', 'submit', { class: 'btn-success btn-success-quotes pull-right'} %>
     <%= f.hidden_field :user_id, { value: current_spree_user.id } %>
   <% end %>
 <%= javascript_include_tag 'spree/frontend/quotes/_form' %>
