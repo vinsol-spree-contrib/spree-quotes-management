@@ -6,8 +6,9 @@
   -webkit-border-radius: 10px;
   -moz-border-radius: 10px;
 }
-.quotes-carousel .carousel-control {
-  background-image: none !important;
+.quotes-carousel .carousel-control.left,
+.quotes-carousel .carousel-control.right {
+  background-image: none ;
 }
 .quotes-carousel .carousel-control {
   display: none;
@@ -20,9 +21,6 @@
 }
 .quotes-carousel .carousel-indicators .active {
   background-color: #444;
-}
-.quotes-carousel .carousel-indicators {
-  bottom: 0 !important;
 }
 .quotes-carousel .body-carousel {
   font-size: 14px;
@@ -57,6 +55,12 @@
 .quotes-carousel {
   margin: 0 0 20px;
 }
+.quotes-carousel .carousel-indicators {
+  bottom: 0;
+}
 .quotes-carousel .carousel-indicators li {
   margin: 1px 3px;
+}
+.quotes-carousel .carousel-indicators li:hover {
+  cursor: auto;
 }

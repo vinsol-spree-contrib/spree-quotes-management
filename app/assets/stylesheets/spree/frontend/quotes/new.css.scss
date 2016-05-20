@@ -20,10 +20,10 @@
 .new_quote .quotes-area {
   resize: none;
   overflow: auto;
-  background: #fefefe !important;
-  border: #ccc solid 1px !important;
-  padding: 5px !important;
-  box-shadow: none !important;
+  background: #fefefe;
+  border: #ccc solid 1px;
+  padding: 5px;
+  box-shadow: none;
 }
 #span-char-left {
   padding: 7px 0 10px;
@@ -37,17 +37,17 @@
   padding: 5px 10px;
   border: #ccc solid 1px;
   border-radius: 3px;
-  margin-bottom: 5px !important;
   width: 95%;
 }
-.btn-success-quotes {
-  margin: 0 0 30px !important;
+#quote_author_name_field .autor-name-field{
+  margin-bottom: 5px;
 }
-.btn-success-quotes {
-  margin: 0 0 30px !important;
-  background: #008542 !important;
-  border: none !important;
-  padding: 10px 16px !important;
+
+.new_quote .btn-success-quotes {
+  margin: 0 0 30px;
+  background: #008542;
+  border: none;
+  padding: 10px 16px;
 }
 #user_quotes_new_form .btn-success-quotes:hover {
   opacity: 0.9;
