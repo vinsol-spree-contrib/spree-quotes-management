@@ -2,7 +2,7 @@
 Gem::Specification.new do |s|
   s.platform    = Gem::Platform::RUBY
   s.name        = 'spree_quotes_management'
-  s.version     = '3.0.7'
+  s.version     = '3.0.0'
   s.summary     = 'Quotes Management'
   s.description = 'At user end
                       -user can quote about the site.
@@ -23,7 +23,7 @@ Gem::Specification.new do |s|
   s.require_path = 'lib'
   s.requirements << 'none'
 
-  s.add_dependency 'spree_core', '~> 3.0.7'
+  s.add_dependency 'spree_core', '~> 3.0.0'
   s.add_dependency 'state_machines-activerecord', '~> 0.3.0'
 
   s.add_development_dependency 'capybara', '~> 2.4'
