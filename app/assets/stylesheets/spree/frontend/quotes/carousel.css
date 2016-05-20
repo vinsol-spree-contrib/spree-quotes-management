@@ -1,4 +1,66 @@
-.body-carousel {
-  height: 150px;
-  margin: 10px 35px;
+
+.quotes-carousel .carousel-inner {
+  background: transparent;
+  border: #eee solid 3px;
+  border-radius: 10px;
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+}
+.quotes-carousel .carousel-control.left,
+.quotes-carousel .carousel-control.right {
+  background-image: none ;
+}
+.quotes-carousel .carousel-control {
+  display: none;
+}
+.quotes-carousel:hover .carousel-control {
+  display: block;
+}
+.quotes-carousel .carousel-indicators li {
+  border-color: #444;
+}
+.quotes-carousel .carousel-indicators .active {
+  background-color: #444;
+}
+.quotes-carousel .body-carousel {
+  font-size: 14px;
+  padding: 10px 0;
+  color: #444;
+}
+.quotes-carousel .author-name {
+  font-style: italic;
+  font-weight: normal;
+  padding: 0 20px 0 0;
+}
+.quotes-carousel .body-carousel {
+  min-height: 250px;
+}
+.quotes-carousel .testimonial-text {
+  padding: 10px 30px;
+  width: 100%;
+  float: left;
+}
+.quotes-carousel .carousel-control .glyphicon-chevron-left,
+.quotes-carousel .carousel-control .icon-prev {
+  margin-left: -17px;
+  color: #444;
+  text-shadow: none;
+}
+.quotes-carousel .carousel-control .glyphicon-chevron-right,
+.quotes-carousel .carousel-control .icon-next {
+  margin-right: -17px;
+  color: #444;
+  text-shadow: none;
+}
+.quotes-carousel {
+  margin: 0 0 20px;
+}
+.quotes-carousel .carousel-indicators {
+  bottom: 0;
+}
+.quotes-carousel .carousel-indicators li {
+  margin: 1px 3px;
+}
+.quotes-carousel .carousel-indicators li:hover {
+  cursor: auto;
 }

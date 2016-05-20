@@ -13,12 +13,14 @@
       <div class="carousel-inner" role="listbox">
         <% @top_quotes.each_with_index do |quote, index| %>
           <div class="item <%= index == 0 ? 'active' : '' %>">
-            <center>
-              <div class="body-carousel">
-                <%= quote.description %><br>
-                <div class='pull-right'>-by <i><%= present(quote).author_name %></i></div>
+            <div class="body-carousel">
+              <span class="testimonial-text">
+                <%= quote.description %>
+              </span>
+              <div class='author-name pull-right'>
+                - <%= present(quote).author_name %>
               </div>
-            </center>
+            </div>
           </div>
         <% end %>
       </div>
@@ -37,5 +39,7 @@
   </div>
   <%= stylesheet_link_tag 'spree/frontend/quotes/carousel' %>
 
-  <div id='user_quotes_new_form'><%= render partial: 'spree/quotes/form', locals: { quote: @quote } %></div>
+  <div id='user_quotes_new_form'>
+    <%= render partial: 'spree/quotes/form', locals: { quote: @quote } %>
+  </div>
 <% end %>

@@ -11,3 +11,44 @@
 #quote_description_field, #quote_author_name {
   margin-bottom: 20px;
 }
+
+.textarea-head {
+  font-size: 16px;
+  padding: 10px 0 10px;
+  margin: 0;
+}
+.new_quote .quotes-area {
+  resize: none;
+  overflow: auto;
+  background: #fefefe;
+  border: #ccc solid 1px;
+  padding: 5px;
+  box-shadow: none;
+}
+#span-char-left {
+  padding: 7px 0 10px;
+  font-size: 12px;
+}
+#quote_author_name_field {
+  width: 100%;
+  float: right;
+}
+.autor-name-field {
+  padding: 5px 10px;
+  border: #ccc solid 1px;
+  border-radius: 3px;
+  width: 95%;
+}
+#quote_author_name_field .autor-name-field{
+  margin-bottom: 5px;
+}
+
+.new_quote .btn-success-quotes {
+  margin: 0 0 30px;
+  background: #008542;
+  border: none;
+  padding: 10px 16px;
+}
+#user_quotes_new_form .btn-success-quotes:hover {
+  opacity: 0.9;
+}
