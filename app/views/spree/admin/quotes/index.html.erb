@@ -78,12 +78,12 @@
         <td class='quotes_publish_date'><%= present(quote).published_at %></td>
         <td class='quotes_state'><%= quote.state.upcase %></td>
         <td class='quotes_rank'><%= present(quote).rank %></td>
-        <td class="text-right">
+        <td class='quote-actions'>
           <%= link_to_edit quote, no_text: true %>
           <% if quote.published? %>
-            <%= link_to_with_icon('download', 'unpublish', unpublish_admin_quote_url(quote, q: params[:q], page: params[:page], per_page: params[:per_page]), data: { action: 'unpublish' }, class: "btn btn-success btn-sm", no_text: true ) %>
+            <%= link_to_with_icon('eye-close', 'unpublish', unpublish_admin_quote_url(quote, q: params[:q], page: params[:page], per_page: params[:per_page]), data: { action: 'unpublish' }, class: "btn eye-close btn-sm", no_text: true ) %>
           <% else %>
-            <%= link_to_with_icon('ok', 'publish', publish_admin_quote_url(quote, q: params[:q], page: params[:page], per_page: params[:per_page]), data: { action: 'publish' }, class: "btn btn-success btn-sm", no_text: true ) %>
+            <%= link_to_with_icon('eye-open', 'publish', publish_admin_quote_url(quote, q: params[:q], page: params[:page], per_page: params[:per_page]), data: { action: 'publish' }, class: "btn eye-open btn-sm", no_text: true ) %>
           <% end %>
           <% if quote.published? %>
             <%= link_to_with_icon('delete', '', '#', disabled: true, no_text: true, class: 'btn btn-danger btn-sm') %>
