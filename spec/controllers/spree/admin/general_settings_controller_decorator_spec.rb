@@ -4,7 +4,7 @@ describe Spree::Admin::GeneralSettingsController, type: :controller do
   let(:user) { create(:user) }
 
   before do
-    allow(controller).to receive_messages :spree_current_user => user
+    allow(controller).to receive_messages spree_current_user: user
     user.spree_roles << Spree::Role.find_or_create_by(name: 'admin')
   end
 
@@ -16,7 +16,7 @@ describe Spree::Admin::GeneralSettingsController, type: :controller do
 
     it 'sets preference disable_quote?' do
       do_update
-      expect(SpreeQuotesManagement::Config[:disable_quote?]).to eq(true)
+      expect(SpreeQuotesManagement::Config[:disable_quote?]).to be true
     end
 
     it 'sets preference quotes_count' do

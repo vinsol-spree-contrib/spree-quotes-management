@@ -4,7 +4,7 @@ describe Spree::HomeController, type: :controller do
   let(:user) { create(:user) }
 
   before do
-    allow(controller).to receive_messages :spree_current_user => user
+    allow(controller).to receive_messages spree_current_user: user
     user.spree_roles << Spree::Role.find_or_create_by(name: 'admin')
   end
 
@@ -16,7 +16,7 @@ describe Spree::HomeController, type: :controller do
 
     it 'sets new quote' do
       do_index
-      expect(assigns(:quote).new_record?).to eq(true)
+      expect(assigns(:quote).new_record?).to be true
     end
 
     before do
