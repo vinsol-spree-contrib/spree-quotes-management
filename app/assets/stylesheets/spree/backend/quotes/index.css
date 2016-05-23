@@ -10,3 +10,15 @@
 .tooltip-quotes-info .tooltip-arrow{
   display: none
 }
+
+.quote-actions {
+  width: 200px;
+}
+
+a.eye-open {
+background-color: hsla(90, 47%, 49%, 0.30)
+}
+
+a.eye-close {
+background-color: hsla(90, 47%, 49%, 0.20)
+}
