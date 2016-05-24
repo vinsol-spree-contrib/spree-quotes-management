@@ -15,6 +15,8 @@ en:
           success: Quote successfully published
         unpublish:
           success: Quote successfully unpublished
+        state_change:
+          failure: Quote not found
   activerecord:
     models:
       spree/quote:

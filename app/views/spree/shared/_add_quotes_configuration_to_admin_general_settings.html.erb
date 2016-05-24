@@ -14,7 +14,7 @@
         <%= text_field_tag :quotes_count, ::Spree::Quote.quotes_display_count, class: 'form-control' %>
       </div>
       <div class="col-md-3">
-        <%= preference_field_tag :disable_quote?, ::SpreeQuotesManagement::Config[:disable_quote?], {type: :boolean, class: 'form-control'} %>
+        <%= preference_field_tag :disable_quote, ::SpreeQuotesManagement::Config[:disable_quote], { type: :boolean, class: 'form-control' } %>
         <%= Spree.t(:disable_quote) %>
       </div>
     </div>
