@@ -5,14 +5,14 @@ describe Spree::BaseHelper, :type => :helper do
   let(:quote) { create(:quote) }
 
   context "#present" do
-    it "should return object of presenter class" do
+    it "returns object of presenter class" do
       expect(present(quote).class).to eq(Spree::QuotePresenter)
     end
 
   end
 
   context "#quote_states" do
-    it "should return quote_states" do
+    it "returns quote states" do
       expect(quote_states).to eq([['published', 'published'], ['draft', 'draft']])
     end
   end
