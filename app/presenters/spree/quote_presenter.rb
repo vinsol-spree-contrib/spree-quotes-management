@@ -1,7 +1,7 @@
 class Spree::QuotePresenter < BasePresenter
 
   def author_name
-    @model.author_name.present? ? @model.author_name : 'Anonymous'
+    @model.author_name.presence || 'Anonymous'
   end
 
   def published_at

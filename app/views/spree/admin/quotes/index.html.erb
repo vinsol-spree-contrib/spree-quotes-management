@@ -1,5 +1,5 @@
 <% content_for :page_title do %>
-<%= Spree.t(:quotes) %>
+  <%= Spree.t(:quotes) %>
   <span class='tooltip-quotes-info'>
     <%= link_to_with_icon('info-sign', Spree.t(:quotes_tooltip_info), 'javascript:void(0);', no_text: true, class: 'btn') %>
   </span>
@@ -34,14 +34,14 @@
         <div class="col-md-6">
           <div class="form-group">
             <%= f.label :author_name_cont, Spree::Quote.human_attribute_name(:author_name) %>
-            <%= f.text_field :author_name_cont, size: 15, class: "form-control js-quick-search-target" %>
+            <%= f.text_field :author_name_cont, size: 15, class: "form-control" %>
           </div>
         </div>
 
         <div class="col-md-6">
           <div class="form-group">
             <%= f.label :user_email_cont, Spree::User.human_attribute_name(:email) %>
-            <%= f.text_field :user_email_cont, size: 15, class: "form-control js-quick-search-target" %>
+            <%= f.text_field :user_email_cont, size: 15, class: "form-control" %>
           </div>
         </div>
 
@@ -81,9 +81,9 @@
         <td class='quote-actions'>
           <%= link_to_edit quote, no_text: true %>
           <% if quote.published? %>
-            <%= link_to_with_icon('eye-close', 'unpublish', unpublish_admin_quote_url(quote, q: params[:q], page: params[:page], per_page: params[:per_page]), data: { action: 'unpublish' }, class: "btn eye-close btn-sm", no_text: true ) %>
+            <%= link_to_with_icon('eye-close', 'unpublish', unpublish_admin_quote_url(quote), data: { action: 'unpublish' }, class: "btn eye-close btn-sm", no_text: true ) %>
           <% else %>
-            <%= link_to_with_icon('eye-open', 'publish', publish_admin_quote_url(quote, q: params[:q], page: params[:page], per_page: params[:per_page]), data: { action: 'publish' }, class: "btn eye-open btn-sm", no_text: true ) %>
+            <%= link_to_with_icon('eye-open', 'publish', publish_admin_quote_url(quote), data: { action: 'publish' }, class: "btn eye-open btn-sm", no_text: true ) %>
           <% end %>
           <% if quote.published? %>
             <%= link_to_with_icon('delete', '', '#', disabled: true, no_text: true, class: 'btn btn-danger btn-sm') %>

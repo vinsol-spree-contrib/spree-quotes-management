@@ -1,19 +1,25 @@
 module Spree
   class Quote < Spree::Base
 
-    scope :published, ->{ where(state: 'published') }
-    scope :ranked_quotes, ->{ published.where(rank: rank_range) }
-    scope :published_and_without_rank, ->{ published.where(arel_table[:rank].not_in(rank_range).or(arel_table[:rank].eq(nil))) }
+    # Scopes
+    scope :published, -> { where(state: 'published') }
+    scope :ranked_quotes, -> { published.where(rank: rank_range) }
+    scope :published_and_without_rank, -> { published.where(arel_table[:rank]
+                                                    .not_in(rank_range)
+                                                    .or(arel_table[:rank].eq(nil))) }
 
     delegate :email, to: :user, prefix: true
 
+    # Validations
     validates :description, :user, :state, presence: true
+    validates_numericality_of :rank, less_than_or_equal_to: :quotes_display_count, greater_than: 0,
+                                      allow_blank: true
 
-    validates_numericality_of :rank, less_than_or_equal_to: :quotes_display_count, greater_than: 0, allow_blank: true
-
+    #Associations
     belongs_to :user
 
-    before_update :update_quotes_of_same_rank, if: -> { rank_changed? }
+    #Callbacks
+    before_update :update_quotes_of_same_rank, if: :rank_changed?
     before_destroy :restrict_if_published
 
     state_machine initial: :draft do
