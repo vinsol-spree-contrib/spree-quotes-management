@@ -35,6 +35,7 @@ module Spree
         transition to: :draft, on: :unpublish
       end
     end
+
     self.whitelisted_ransackable_associations = %w[user]
     self.whitelisted_ransackable_attributes = %w[description state author_name]
 

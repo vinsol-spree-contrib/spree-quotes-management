@@ -16,6 +16,7 @@ ENV['RAILS_ENV'] = 'test'
 require File.expand_path('../dummy/config/environment.rb',  __FILE__)
 
 require 'rspec/rails'
+require 'shoulda/matchers'
 require 'database_cleaner'
 require 'ffaker'
 
@@ -32,6 +33,14 @@ require 'spree/testing_support/url_helpers'
 
 # Requires factories defined in lib/spree_quotes_management/factories.rb
 require 'spree_quotes_management/factories'
+
+
+Shoulda::Matchers.configure do |config|
+  config.integrate do |with|
+    with.test_framework :rspec
+    with.library :rails
+  end
+end
 
 RSpec.configure do |config|
   config.include FactoryGirl::Syntax::Methods
