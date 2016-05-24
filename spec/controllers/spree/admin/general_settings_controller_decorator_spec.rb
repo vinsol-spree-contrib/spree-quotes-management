@@ -14,9 +14,9 @@ describe Spree::Admin::GeneralSettingsController, type: :controller do
 
   describe '#update' do
 
-    it 'sets preference disable_quote?' do
+    it 'sets preference disable_quote' do
       do_update
-      expect(SpreeQuotesManagement::Config[:disable_quote?]).to be true
+      expect(SpreeQuotesManagement::Config[:disable_quote]).to be true
     end
 
     it 'sets preference quotes_count' do

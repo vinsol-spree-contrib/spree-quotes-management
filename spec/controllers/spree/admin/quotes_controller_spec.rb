@@ -28,55 +28,63 @@ describe Spree::Admin::QuotesController, type: :controller do
       expect(response).to render_template(:index)
     end
 
-    it 'sets @quote' do
+    it 'sets @quotes' do
       do_index
       expect(assigns(:quotes)).to eq([quote])
     end
   end
 
   describe '#publish' do
-    it 'publishes quote' do
-      do_publish(quote)
-      expect(quote.reload.state).to eq('published')
+    context 'when quotes published successfully' do
+      it 'publishes quote' do
+        do_publish(quote)
+        expect(quote.reload.state).to eq('published')
+      end
+
+      it 'redirects to index page on success' do
+        do_publish(quote)
+        expect(response).to redirect_to(admin_quotes_path)
+      end
+
+      it 'sets notice' do
+        do_publish(quote)
+        expect(flash[:notice]).to eq(Spree.t('flash.quotes.publish.success'))
+      end
     end
 
-    it 'redirect_to index page on success' do
-      do_publish(quote)
-      expect(response).to redirect_to(admin_quotes_path)
-    end
-
-    it 'sets notice' do
-      do_publish(quote)
-      expect(flash[:notice]).to eq(Spree.t('flash.quotes.publish.success'))
-    end
-
-    it 'render edit page on failure' do
-      allow_any_instance_of(::Spree::Quote).to receive_messages publish: false
-      do_publish(quote)
-      expect(response).to render_template(:edit)
+    context 'when quotes doesn\'t published successfully' do
+      it 'renders edit page on failure' do
+        allow_any_instance_of(::Spree::Quote).to receive_messages publish: false
+        do_publish(quote)
+        expect(response).to render_template(:edit)
+      end
     end
   end
 
   describe '#unpublish' do
-    it 'unpublishes quote' do
-      do_unpublish(published_quote)
-      expect(quote.reload.state).to eq('draft')
+    context 'when quotes unpublished successfully' do
+      it 'unpublishes quote' do
+        do_unpublish(published_quote)
+        expect(quote.reload.state).to eq('draft')
+      end
+
+      it 'redirects to index page on success' do
+        do_unpublish(published_quote)
+        expect(response).to redirect_to(admin_quotes_path)
+      end
+
+      it 'sets notice' do
+        do_unpublish(published_quote)
+        expect(flash[:notice]).to eq(Spree.t('flash.quotes.unpublish.success'))
+      end
     end
 
-    it 'redirect_to index page on success' do
-      do_unpublish(published_quote)
-      expect(response).to redirect_to(admin_quotes_path)
-    end
-
-    it 'sets notice' do
-      do_unpublish(published_quote)
-      expect(flash[:notice]).to eq(Spree.t('flash.quotes.unpublish.success'))
-    end
-
-    it 'render edit page on failure' do
-      allow_any_instance_of(::Spree::Quote).to receive_messages unpublish: false
-      do_unpublish(published_quote)
-      expect(response).to render_template(:edit)
+    context 'when quotes doesn\'t unpublished successfully' do
+      it 'renders edit page on failure' do
+        allow_any_instance_of(::Spree::Quote).to receive_messages unpublish: false
+        do_unpublish(published_quote)
+        expect(response).to render_template(:edit)
+      end
     end
   end
 end
