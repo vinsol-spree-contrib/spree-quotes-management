@@ -8,6 +8,7 @@ describe Spree::Admin::QuotesController, type: :controller do
   before do
     allow(controller).to receive_messages spree_current_user: user
     user.spree_roles << Spree::Role.find_or_create_by(name: 'admin')
+    allow(request).to receive_messages referrer: admin_quotes_path
   end
 
   def do_index
@@ -52,7 +53,7 @@ describe Spree::Admin::QuotesController, type: :controller do
       end
     end
 
-    context 'when quotes doesn\'t published successfully' do
+    context 'when quote has not successfully published' do
       it 'renders edit page on failure' do
         allow_any_instance_of(::Spree::Quote).to receive_messages publish: false
         do_publish(quote)
@@ -79,7 +80,7 @@ describe Spree::Admin::QuotesController, type: :controller do
       end
     end
 
-    context 'when quotes doesn\'t unpublished successfully' do
+    context 'when quote has not successfully unpublished' do
       it 'renders edit page on failure' do
         allow_any_instance_of(::Spree::Quote).to receive_messages unpublish: false
         do_unpublish(published_quote)
