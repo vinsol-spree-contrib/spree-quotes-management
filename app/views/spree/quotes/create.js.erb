@@ -1,0 +1,3 @@
+$("div#user_quotes_new_form").html("<%=j render partial: 'spree/quotes/form', locals: { quote: @quote } %>")
+$('#user_quotes_new_form').find('.alert').remove();
+$('#user_quotes_new_form').prepend('<%= flash_messages %>')

@@ -1,0 +1,34 @@
+en:
+  spree:
+    quotes: Quotes
+    new_quote: New Quote
+    quotes_settings: Quotes Settings
+    disable_quote: disable
+    number_of_quotes: Number of Quotes
+    quotes_tooltip_info: 'You can set the position of each quote by providing a position to it. Without a position, published quotes will be displayed randomly.'
+    valid_quote_message: Thanks for your feedback, quote successfully received!
+    invalid_quote_message: Quote is invalid
+    destroy_published_quote: "Published Quotes can't be destroyed"
+    flash:
+      quotes:
+        publish:
+          success: Quote successfully published
+        unpublish:
+          success: Quote successfully unpublished
+        state_change:
+          failure: Quote not found
+    quote_state:
+      draft: draft
+      published: published
+  activerecord:
+    models:
+      spree/quote:
+        one: quote
+        other: quotes
+    attributes:
+      spree/quote:
+        created_at: Created At
+        state:  Status
+        description: Quote
+        author_name: Quoted By
+        rank: Position

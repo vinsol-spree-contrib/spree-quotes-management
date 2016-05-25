@@ -1,0 +1,24 @@
+.table > tbody > tr > td.quotes_description {
+  width: 250px;
+}
+
+.tooltip-quotes-info .tooltip{
+  top: -15px !important;
+  left: 140px !important;
+}
+
+.tooltip-quotes-info .tooltip-arrow{
+  display: none
+}
+
+.quote-actions {
+  width: 200px;
+}
+
+a.eye-open {
+background-color: hsla(90, 47%, 49%, 0.30)
+}
+
+a.eye-close {
+background-color: hsla(90, 47%, 49%, 0.20)
+}
