@@ -54,7 +54,7 @@ describe Spree::Admin::QuotesController, type: :controller do
         end
       end
 
-      context 'when quote has not successfully published' do
+      context 'when quote is not successfully published' do
         it 'renders edit page on failure' do
           allow_any_instance_of(::Spree::Quote).to receive_messages publish: false
           do_publish(quote)
@@ -98,7 +98,7 @@ describe Spree::Admin::QuotesController, type: :controller do
         end
       end
 
-      context 'when quote has not successfully unpublished' do
+      context 'when quote is not successfully unpublished' do
         it 'renders edit page on failure' do
           allow_any_instance_of(::Spree::Quote).to receive_messages unpublish: false
           do_unpublish(published_quote)
