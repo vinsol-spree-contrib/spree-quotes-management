@@ -36,7 +36,7 @@ module Spree
         def load_quote
           @quote = Quote.find_by(id: params[:id])
           unless @quote.present?
-            flash[:notice] = Spree.t('flash.quotes.state_change.failure')
+            flash[:alert] = Spree.t('flash.quotes.state_change.failure')
             redirect_to request.referrer
           end
         end

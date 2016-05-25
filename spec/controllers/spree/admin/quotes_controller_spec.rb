@@ -36,55 +36,89 @@ describe Spree::Admin::QuotesController, type: :controller do
   end
 
   describe '#publish' do
-    context 'when quotes published successfully' do
-      it 'publishes quote' do
-        do_publish(quote)
-        expect(quote.reload.state).to eq('published')
+    context 'when quote is present' do
+      context 'when quotes published successfully' do
+        it 'publishes quote' do
+          do_publish(quote)
+          expect(quote.reload.state).to eq('published')
+        end
+
+        it 'redirects to index page on success' do
+          do_publish(quote)
+          expect(response).to redirect_to(admin_quotes_path)
+        end
+
+        it 'sets notice' do
+          do_publish(quote)
+          expect(flash[:notice]).to eq(Spree.t('flash.quotes.publish.success'))
+        end
       end
 
-      it 'redirects to index page on success' do
+      context 'when quote has not successfully published' do
+        it 'renders edit page on failure' do
+          allow_any_instance_of(::Spree::Quote).to receive_messages publish: false
+          do_publish(quote)
+          expect(response).to render_template(:edit)
+        end
+      end
+    end
+
+    context 'when quote is not present' do
+      before do
+        allow(Spree::Quote).to receive_messages find_by: nil
+      end
+      it 'redirects to index page' do
         do_publish(quote)
         expect(response).to redirect_to(admin_quotes_path)
       end
 
-      it 'sets notice' do
+      it 'sets flash message' do
         do_publish(quote)
-        expect(flash[:notice]).to eq(Spree.t('flash.quotes.publish.success'))
-      end
-    end
-
-    context 'when quote has not successfully published' do
-      it 'renders edit page on failure' do
-        allow_any_instance_of(::Spree::Quote).to receive_messages publish: false
-        do_publish(quote)
-        expect(response).to render_template(:edit)
+        expect(flash[:alert]).to eq(Spree.t('flash.quotes.state_change.failure'))
       end
     end
   end
 
   describe '#unpublish' do
-    context 'when quotes unpublished successfully' do
-      it 'unpublishes quote' do
-        do_unpublish(published_quote)
-        expect(quote.reload.state).to eq('draft')
+    context 'when quote is present' do
+      context 'when quotes unpublished successfully' do
+        it 'unpublishes quote' do
+          do_unpublish(published_quote)
+          expect(quote.reload.state).to eq('draft')
+        end
+
+        it 'redirects to index page on success' do
+          do_unpublish(published_quote)
+          expect(response).to redirect_to(admin_quotes_path)
+        end
+
+        it 'sets notice' do
+          do_unpublish(published_quote)
+          expect(flash[:notice]).to eq(Spree.t('flash.quotes.unpublish.success'))
+        end
       end
 
-      it 'redirects to index page on success' do
-        do_unpublish(published_quote)
-        expect(response).to redirect_to(admin_quotes_path)
-      end
-
-      it 'sets notice' do
-        do_unpublish(published_quote)
-        expect(flash[:notice]).to eq(Spree.t('flash.quotes.unpublish.success'))
+      context 'when quote has not successfully unpublished' do
+        it 'renders edit page on failure' do
+          allow_any_instance_of(::Spree::Quote).to receive_messages unpublish: false
+          do_unpublish(published_quote)
+          expect(response).to render_template(:edit)
+        end
       end
     end
 
-    context 'when quote has not successfully unpublished' do
-      it 'renders edit page on failure' do
-        allow_any_instance_of(::Spree::Quote).to receive_messages unpublish: false
-        do_unpublish(published_quote)
-        expect(response).to render_template(:edit)
+    context 'when quote is not present' do
+      before do
+        allow(Spree::Quote).to receive_messages find_by: nil
+      end
+      it 'redirects to index page' do
+        do_unpublish(quote)
+        expect(response).to redirect_to(admin_quotes_path)
+      end
+
+      it 'sets flash message' do
+        do_unpublish(quote)
+        expect(flash[:alert]).to eq(Spree.t('flash.quotes.state_change.failure'))
       end
     end
   end
