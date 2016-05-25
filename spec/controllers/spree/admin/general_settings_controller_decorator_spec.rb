@@ -9,7 +9,7 @@ describe Spree::Admin::GeneralSettingsController, type: :controller do
   end
 
   def do_update
-    post :update, disable_quote?: true, quotes_count: 10, store: { url: 'www.spree.com' }
+    post :update, disable_quote: true, quotes_count: 10, store: { url: 'www.spree.com' }
   end
 
   describe '#update' do
