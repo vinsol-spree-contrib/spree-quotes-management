@@ -13,7 +13,7 @@ Provides user's quotes management for spree.
 ###Add spree_quotes_management to your Gemfile:
 
   ```ruby
-  gem 'spree_quotes_management', github: 'vinsol-spree-contrib/spree-quotes-management'
+  gem 'spree_quotes_management', github: 'vinsol-spree-contrib/spree-quotes-management', branch: '3-0-stable'
   ```
 
 ###Bundle your dependencies and run the installation generator:
