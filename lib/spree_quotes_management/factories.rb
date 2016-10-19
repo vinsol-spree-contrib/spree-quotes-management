@@ -4,7 +4,7 @@
 # require 'spree_quotes_management/factories'
 FactoryGirl.define do
   factory :quote, :class => Spree::Quote do
-    description { Faker::Lorem.sentence }
+    description { FFaker::Lorem.sentence }
     user
     trait :published do
       state 'published'
