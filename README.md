@@ -53,4 +53,4 @@ Provides user's quotes management for spree.
   4. Perform a [pull request](https://help.github.com/articles/using-pull-requests) in github's web interface.
 
 ## License
-  Copyright (c) 2016 Vinsol, released under the New BSD License
+  Copyright (c) 2016 [Vinsol](http://vinsol.com), released under the New BSD License
