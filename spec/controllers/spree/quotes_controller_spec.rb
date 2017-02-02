@@ -9,7 +9,7 @@ describe Spree::QuotesController, type: :controller do
   end
 
   def do_create
-    xhr :post, :create, quote: { description: 'abc', author_name: 'xyz', user_id: user.id }
+    post :create, params: { quote: { description: 'abc', author_name: 'xyz', user_id: user.id } }, xhr: true
   end
 
   describe '#create' do

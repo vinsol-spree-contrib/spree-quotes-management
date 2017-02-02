@@ -9,6 +9,7 @@ describe Spree::Admin::QuotesController, type: :controller do
     allow(controller).to receive_messages spree_current_user: user
     user.spree_roles << Spree::Role.find_or_create_by(name: 'admin')
     allow(request).to receive_messages referrer: admin_quotes_path
+    request.env["HTTP_REFERER"] = admin_quotes_path
   end
 
   def do_index
@@ -16,11 +17,11 @@ describe Spree::Admin::QuotesController, type: :controller do
   end
 
   def do_publish(quote)
-    get :publish, id: quote.id
+    get :publish, params: { id: quote.id }
   end
 
   def do_unpublish(quote)
-    get :unpublish, id: quote.id
+    get :unpublish, params: { id: quote.id }
   end
 
   describe '#index' do

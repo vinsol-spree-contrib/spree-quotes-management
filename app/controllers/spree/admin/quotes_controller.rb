@@ -1,7 +1,7 @@
 module Spree
   module Admin
     class QuotesController < ResourceController
-      before_filter :load_quote, only: [:publish, :unpublish]
+      before_action :load_quote, only: [:publish, :unpublish]
 
       def index
         @quotes = ::Spree::Quote.order(::Spree::Quote.arel_table[:rank].eq(nil), :rank, created_at: :desc)

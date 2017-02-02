@@ -1,5 +1,5 @@
 Spree::HomeController.class_eval do
-  before_filter :set_top_quotes, :set_new_quote, only: :index
+  before_action :set_top_quotes, :set_new_quote, only: :index
 
   private
 

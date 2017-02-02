@@ -72,7 +72,7 @@ module Spree
       def restrict_if_published
         if published?
           errors.add(:Base, Spree.t(:destroy_published_quote))
-          false
+          throw(:abort)
         end
       end
 
