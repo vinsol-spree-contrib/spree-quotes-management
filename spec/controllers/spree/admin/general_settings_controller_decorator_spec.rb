@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe Spree::Admin::GeneralSettingsController, type: :controller do
+describe Spree::Admin::GeneralSettingsController do
   let(:user) { create(:user) }
 
   before do

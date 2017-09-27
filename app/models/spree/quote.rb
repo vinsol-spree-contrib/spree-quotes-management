@@ -8,7 +8,7 @@ module Spree
                                                     .not_in(rank_range)
                                                     .or(arel_table[:rank].eq(nil))) }
 
-    delegate :email, to: :user, prefix: true
+    delegate :email, to: :user, prefix: true, allow_nil: true
 
     # Validations
     validates :description, :user, :state, presence: true
