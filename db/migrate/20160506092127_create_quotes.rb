@@ -1,4 +1,4 @@
-class CreateQuotes < ActiveRecord::Migration
+class CreateQuotes < SpreeExtension::Migration[4.2]
 
   def change
     create_table :spree_quotes do |t|

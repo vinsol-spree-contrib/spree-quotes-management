@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe Spree::BaseHelper, :type => :helper do
+describe Spree::BaseHelper, type: :helper do
   include Spree::Admin::BaseHelper
   let(:quote) { create(:quote) }
 
