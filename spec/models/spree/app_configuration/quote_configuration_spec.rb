@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe SpreeQuotesManagement::QuoteConfiguration, :type => :model do
+describe SpreeQuotesManagement::QuoteConfiguration, type: :model do
 
   describe 'max_char_in_quotes' do
     it { expect(SpreeQuotesManagement::Config).to have_preference(:max_char_in_quotes) }
