@@ -2,7 +2,7 @@
 Gem::Specification.new do |s|
   s.platform    = Gem::Platform::RUBY
   s.name        = 'spree_quotes_management'
-  s.version     = '3.2.0'
+  s.version     = '3.3.0'
   s.summary     = 'Quotes Management'
   s.description = 'At user end
                       -user can quote about the site.
@@ -12,7 +12,7 @@ Gem::Specification.new do |s|
                       -admin can view all quotes
                       -can either edit or publish a quote'
 
-  s.required_ruby_version = '>= 2.2.2'
+  s.required_ruby_version = '>= 2.2.7'
 
   s.author    = 'Pratibha Mansinghka'
   s.email     = 'info@vinsol.com'
