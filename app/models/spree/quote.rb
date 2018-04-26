@@ -24,11 +24,12 @@ module Spree
 
     state_machine initial: :draft do
 
+      # before_transition to: :published, do:
       before_transition to: :published, do: :set_published_at
       before_transition to: :draft, do: :reset_rank
 
       state :draft do
-        transition to: :published, on: :publish
+        transition to: :published, on: :publish, if: :space_left_to_publish?
       end
 
       state :published do
@@ -45,6 +46,10 @@ module Spree
 
     def self.quotes_display_count
       ::SpreeQuotesManagement::Config[:quotes_count]
+    end
+
+    def space_left_to_publish?
+      quotes_display_count > Spree::Quote.published.count
     end
 
     def self.top_quotes

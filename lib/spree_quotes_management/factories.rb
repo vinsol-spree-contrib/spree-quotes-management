@@ -2,7 +2,7 @@
 #
 # Example adding this to your spec_helper will load these Factories for use:
 # require 'spree_quotes_management/factories'
-FactoryGirl.define do
+FactoryBot.define do
   factory :quote, class: Spree::Quote do
     description { FFaker::Lorem.sentence }
     user
