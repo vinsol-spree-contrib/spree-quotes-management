@@ -19,7 +19,7 @@ module Spree
           flash[:notice] = Spree.t('flash.quotes.publish.success')
           redirect_to request.referrer
         else
-          flash[:notice] = Spree.t('flash.quotes.publish.carousel_limit_exceeded')
+          flash[:notice] = @quote.errors.full_messages.sum
           redirect_to request.referrer
         end
       end
