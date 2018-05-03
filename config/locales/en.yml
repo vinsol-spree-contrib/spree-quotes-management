@@ -13,6 +13,7 @@ en:
       quotes:
         publish:
           success: Quote successfully published
+          carousel_limit_exceeded: Only 5 published quotes are allowed. Unpublish quotes to publish this quote.
         unpublish:
           success: Quote successfully unpublished
         state_change:

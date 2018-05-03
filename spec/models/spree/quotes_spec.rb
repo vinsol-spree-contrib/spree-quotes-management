@@ -2,9 +2,9 @@ require 'spec_helper'
 
 describe Spree::Quote, type: :model do
 
-  let!(:quote) { FactoryGirl.create(:quote) }
-  let(:published_quote) { FactoryGirl.create(:published_quote, rank: 1) }
-  let(:published_quote_without_rank) { FactoryGirl.create(:published_quote) }
+  let!(:quote) { FactoryBot.create(:quote) }
+  let(:published_quote) { FactoryBot.create(:published_quote, rank: 1) }
+  let(:published_quote_without_rank) { FactoryBot.create(:published_quote) }
 
   describe 'Schema' do
     describe 'Fields' do
@@ -42,25 +42,34 @@ describe Spree::Quote, type: :model do
   end
 
   describe 'State machine' do
+    context "space left in carousel" do
+      it 'expects initial state to be draft' do
+        expect(quote.state).to eq('draft')
+      end
 
-    it 'expects initial state to be draft' do
-      expect(quote.state).to eq('draft')
+      it 'expects quote state to be published on event publish' do
+        expect{ quote.publish }.to change{ quote.state }.to('published').from('draft')
+      end
+
+      it 'expects quote state to be draft on event unpublish' do
+        expect { published_quote.unpublish }.to change { published_quote.state }.to('draft').from('published')
+      end
+
+      it 'expects published_at to be set on publish' do
+        expect{ quote.publish }.to change{ quote.published_at }
+      end
+
+      it 'expects rank to be reset on unpublish' do
+        expect { published_quote.unpublish }.to change { published_quote.rank }.to(nil)
+      end
     end
 
-    it 'expects quote state to be published on event publish' do
-      expect{ quote.publish }.to change{ quote.state }.to('published').from('draft')
-    end
+    context "space not left in carousel" do
+      before { 5.times { FactoryBot.create(:published_quote) } }
 
-    it 'expects quote state to be draft on event unpublish' do
-      expect { published_quote.unpublish }.to change { published_quote.state }.to('draft').from('published')
-    end
-
-    it 'expects published_at to be set on publish' do
-      expect{ quote.publish }.to change{ quote.published_at }
-    end
-
-    it 'expects rank to be reset on unpublish' do
-      expect { published_quote.unpublish }.to change { published_quote.rank }.to(nil)
+      it 'expects quote state to not change on event publish' do
+        expect{ quote.publish }.to_not change{ quote.state }
+      end
     end
   end
 
@@ -77,7 +86,7 @@ describe Spree::Quote, type: :model do
     context 'before_update' do
       describe '#update_quotes_of_same_rank' do
         before do
-          @quote2 = FactoryGirl.create(:published_quote)
+          @quote2 = FactoryBot.create(:published_quote)
         end
 
         it 'sets rank of other quote with same rank to nil' do

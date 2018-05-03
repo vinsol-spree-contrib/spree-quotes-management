@@ -19,7 +19,8 @@ module Spree
           flash[:notice] = Spree.t('flash.quotes.publish.success')
           redirect_to request.referrer
         else
-          render action: :edit
+          flash[:notice] = @quote.errors.full_messages.sum
+          redirect_to request.referrer
         end
       end
 

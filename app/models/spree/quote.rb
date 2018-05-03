@@ -28,7 +28,7 @@ module Spree
       before_transition to: :draft, do: :reset_rank
 
       state :draft do
-        transition to: :published, on: :publish
+        transition to: :published, on: :publish, if: :display_space_left?
       end
 
       state :published do
@@ -45,6 +45,12 @@ module Spree
 
     def self.quotes_display_count
       ::SpreeQuotesManagement::Config[:quotes_count]
+    end
+
+    def display_space_left?
+      space_left = quotes_display_count > Spree::Quote.published.count
+      errors.add(:base, Spree.t('flash.quotes.publish.carousel_limit_exceeded')) unless space_left
+      space_left
     end
 
     def self.top_quotes
