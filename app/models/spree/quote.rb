@@ -24,7 +24,6 @@ module Spree
 
     state_machine initial: :draft do
 
-      # before_transition to: :published, do:
       before_transition to: :published, do: :set_published_at
       before_transition to: :draft, do: :reset_rank
 
