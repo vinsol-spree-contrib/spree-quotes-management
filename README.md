@@ -9,6 +9,17 @@ Provides user's quotes management for spree.
   * Admin can create, update, publish, un-publish, and delete quotes.
   * A carousel on home page to show selected quotes.
 
+Demo
+--
+
+  Try Spree Qoutes Management for Spree master with direct deployment on Heroku:
+
+  [![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy?template=https://github.com/vinsol-spree-contrib/spree-demo-heroku/tree/spree-qoutes-management-master)
+
+  Try Spree Qoutes Management for Spree 3-4 with direct deployment on Heroku:
+
+  [![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy?template=https://github.com/vinsol-spree-contrib/spree-demo-heroku/tree/spree-qoutes-management-3-4)
+
 ##Installation
 
 1. Add this extension to your Gemfile with this line:
