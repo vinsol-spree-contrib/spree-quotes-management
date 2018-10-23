@@ -3,7 +3,7 @@ Spree Quotes Management
 
 Provides user's quotes management for spree.
 
-##Features
+## Features
 
   * Registered Users can create quote from home page.
   * Admin can create, update, publish, un-publish, and delete quotes.
@@ -20,7 +20,7 @@ Demo
 
   [![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy?template=https://github.com/vinsol-spree-contrib/spree-demo-heroku/tree/spree-qoutes-management-3-4)
 
-##Installation
+## Installation
 
 1. Add this extension to your Gemfile with this line:
 
@@ -47,7 +47,7 @@ Demo
     bundle exec rails g spree_quotes_management:install
   ```
 
-##Working
+## Working
 
 ### New Quotes by client:
 
@@ -90,6 +90,12 @@ Demo
   bundle
   bundle exec rspec spec
   ```
+
+## See It In Action
+
+<a href="http://www.youtube.com/watch?feature=player_embedded&v=I9TBE_Pt7Tg
+" target="_blank"><img src="http://img.youtube.com/vi/I9TBE_Pt7Tg/0.jpg" 
+alt="Youtube Video Tutorial" /></a>
 
 ## Contributing
 
