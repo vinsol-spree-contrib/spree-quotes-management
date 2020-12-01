@@ -44,7 +44,7 @@ module Spree
     end
 
     def self.quotes_display_count
-      ::SpreeQuotesManagement::Config[:quotes_count]
+      ::SpreeQuotesManagement::QuoteConfiguration.new[:quotes_count]
     end
 
     def display_space_left?

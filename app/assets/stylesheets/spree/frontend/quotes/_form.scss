@@ -4,9 +4,9 @@
 
 label {
   text-transform: uppercase;
-  font-size: $font-size-base - 3;
+  font-size: 13px;
   letter-spacing: 1px;
-  color: $gray;
+  color: #ced4da;
   font-weight: 500;
 
   input[type="radio"], input[type="checkbox"] {
@@ -22,7 +22,7 @@ span.or {
 
 input.form-control {
   &:active, &:focus {
-    border-color: lighten($brand-success, 20);
+    border-color: lighten(#198754, 20);
     box-shadow: none;
   }
 }
@@ -30,16 +30,16 @@ input.form-control {
 .form-group {
   &.withError {
     label, .formError, .required {
-      color: $brand-danger
+      color: #dc3545;
     }
 
     input,
     .select2-choice {
-      border-color: $brand-danger;
+      border-color: #dc3545;
     }
     textarea,
     .select2-choice {
-      border-color: $brand-danger;
+      border-color: #dc3545;
     }
   }
 }
@@ -50,7 +50,7 @@ input.form-control {
 }
 
 .help-block {
-  color: lighten($gray-light, 20);
+  color: lighten(#dee2e6, 20);
   font-weight: 300;
 }
 

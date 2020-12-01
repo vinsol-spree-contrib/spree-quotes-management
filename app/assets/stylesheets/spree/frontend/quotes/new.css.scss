@@ -1,8 +1,7 @@
 
-@import 'bootstrap-sprockets';
-@import 'bootstrap';
+@import "bootstrap";
 
-@import './form';
+@import "./form";
 
 .table > tbody > tr > td.quotes_description {
   width: 500px;
